@@ -71,7 +71,7 @@
             <artifactId>apphub-sdk-java-aws</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
-        <dependency>
+        <!--dependency>
             <groupId>pro.apphub</groupId>
             <artifactId>apphub-sdk-java-azure</artifactId>
             <version>1.0-SNAPSHOT</version>
@@ -85,6 +85,11 @@
             <groupId>pro.apphub</groupId>
             <artifactId>apphub-sdk-java-os</artifactId>
             <version>1.0-SNAPSHOT</version>
+        </dependency-->
+        <dependency>
+            <groupId>com.amazonaws</groupId>
+            <artifactId>aws-java-sdk-iam</artifactId>
+            <version>1.11.77</version>
         </dependency>
     </dependencies>
 
