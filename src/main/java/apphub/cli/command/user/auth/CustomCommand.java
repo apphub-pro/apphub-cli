@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package apphub.cli.command;
+package apphub.cli.command.user.auth;
 
 import apphub.util.Command;
 
@@ -35,6 +35,5 @@ public class CustomCommand extends Command {
 
     @Override
     public void run() {
-        exec();
     }
 }

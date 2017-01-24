@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package apphub.cli.command;
+package apphub.cli.command.user;
 
 import apphub.util.Command;
 

@@ -27,6 +27,8 @@ import java.util.Map;
  * @since 1.0
  */
 public class CustomCommand extends Command {
+    private static final long serialVersionUID = 1L;
+
     public CustomCommand(List<String> arguments, Map<String, String> parameters) {
         super(arguments, parameters);
     }
