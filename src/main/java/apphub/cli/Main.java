@@ -17,6 +17,16 @@
 
 package apphub.cli;
 
+import apphub.cli.command.CustomCommand;
+import apphub.util.Command;
+import apphub.util.CommandException;
+import apphub.util.ParameterCommandException;
+
+import java.util.LinkedHashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+
 /**
  * @author Dmitry Kotlyarov
  * @since 1.0
@@ -26,5 +36,42 @@ public final class Main {
     }
 
     public static void main(String[] args) {
+        try {
+            System.out.println("");
+            System.out.println("");
+            List<String> arguments = new LinkedList<>();
+            Map<String, String> parameters = new LinkedHashMap<>(args.length);
+            boolean f = true;
+            for (String a : args) {
+                if (f) {
+                    if (a.startsWith("--")) {
+                        f = false;
+                    } else {
+                        arguments.add(a);
+                    }
+                }
+                if (!f) {
+                    if (a.startsWith("--")) {
+                        String anp = a.substring(2);
+                        int i = anp.indexOf("=");
+                        if (i == -1) {
+                            parameters.put(anp, null);
+                        } else {
+                            parameters.put(anp.substring(0, i), anp.substring(i + 1));
+                        }
+                    } else {
+                        throw new ParameterCommandException(String.format("Parameter '%s' does not start with prefix '--'", a));
+                    }
+                }
+            }
+            Command c = new CustomCommand(arguments, parameters);
+            c.run();
+        } catch (CommandException e) {
+            System.out.println(String.format("[ERROR]: %s", e.getMessage()));
+            System.exit(e.getStatus());
+        } catch (Throwable e) {
+            System.out.println(String.format("[ERROR]: %s", e.getMessage()));
+            System.exit(1);
+        }
     }
 }
